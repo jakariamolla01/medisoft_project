@@ -1,4 +1,3 @@
-# FILE: medisoft/settings.py
 import os
 from pathlib import Path
 
@@ -15,7 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core.apps.CoreConfig',  # Core Medisoft application register
+    'core.apps.CoreConfig',  # Core application register
 ]
 
 MIDDLEWARE = [
@@ -33,7 +32,7 @@ ROOT_URLCONF = 'medisoft.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Dynamic templates registration mapping
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Dynamic templates reg mapping
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
