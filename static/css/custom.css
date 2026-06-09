@@ -1,0 +1,12 @@
+/* FILE: static/css/custom.css */
+/* Core Medisoft Custom Animation Controls Chassis */
+.blink {
+    animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+.hover-shadow:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    transition: all 0.3s ease-in-out;
+}

@@ -1,0 +1,108 @@
+<!-- FILE: templates/register.html -->
+{% extends 'base.html' %}
+{% block title %}System Initialization - Register Node{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-medisoft text-white p-4 text-center">
+                <h4 class="fw-bold mb-0">Central Registry Enlistment</h4>
+                <p class="mb-0 text-white-50 small">Deploy individual actor entities to Medisoft Database Cluster</p>
+            </div>
+            <div class="card-body p-4 bg-white">
+                <form action="/register/" method="POST">
+                    {% csrf_token %}
+                    <div class="row g-3 mb-4">
+                        <h5 class="border-bottom pb-2 text-medisoft fw-bold"><i class="fa-solid fa-sliders me-1"></i> Base Core Architecture</h5>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Global Unique Username</label>
+                            <input type="text" name="username" class="form-control shadow-sm" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">System Routing Email</label>
+                            <input type="email" name="email" class="form-control shadow-sm" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Security Pass Phrase</label>
+                            <input type="password" name="password" class="form-control shadow-sm" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Operational Network Role</label>
+                            <select name="role" id="roleSelector" class="form-select shadow-sm border-primary fw-bold text-medisoft" onchange="toggleRolePayloads()" required>
+                                <option value="patient" selected>Patient Unit</option>
+                                <option value="doctor">Licensed Practitioner (Doctor)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label fw-semibold">Full Legal Enterprise Name</label>
+                            <input type="text" name="full_name" class="form-control shadow-sm" placeholder="John Doe / Dr. Smith" required>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Form Configuration for Patients -->
+                    <div id="patientPayload" class="row g-3 mb-4">
+                        <h5 class="border-bottom pb-2 text-success fw-bold"><i class="fa-solid fa-hospital-user me-1"></i> Patient Demographics Sub-schema</h5>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Secure Phone Vector</label>
+                            <input type="text" name="phone" class="form-control shadow-sm">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Blood Sub-Matrix</label>
+                            <select name="blood_group" class="form-select shadow-sm">
+                                <option value="A+">A+</option><option value="A-">A-</option>
+                                <option value="B+">B+</option><option value="B-">B-</option>
+                                <option value="O+">O+</option><option value="O-">O-</option>
+                                <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Temporal DOB Ledger</label>
+                            <input type="date" name="dob" class="form-control shadow-sm">
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Form Configuration for Doctors -->
+                    <div id="doctorPayload" class="row g-3 mb-4 d-none">
+                        <h5 class="border-bottom pb-2 text-info fw-bold"><i class="fa-solid fa-user-md me-1"></i> Practitioner Professional Credentials</h5>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Medical Specialty Board</label>
+                            <input type="text" name="specialization" class="form-control shadow-sm" placeholder="Cardiology">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">BMDC Regulatory License ID</label>
+                            <input type="text" name="license" class="form-control shadow-sm" placeholder="REG-2026-XXXX">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Base Slot Fee (BDT)</label>
+                            <input type="number" name="fee" class="form-control shadow-sm" placeholder="1000">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-medisoft w-100 py-3 fw-bold text-uppercase shadow-sm">
+                        Deploy Entity Engine <i class="fa-solid fa-server ms-1"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleRolePayloads() {
+        const selectedRole = document.getElementById('roleSelector').value;
+        const patientSpace = document.getElementById('patientPayload');
+        const doctorSpace = document.getElementById('doctorPayload');
+        
+        if(selectedRole === 'patient') {
+            patientSpace.classList.remove('d-none');
+            doctorSpace.classList.add('d-none');
+        } else {
+            patientSpace.classList.add('d-none');
+            doctorSpace.classList.remove('d-none');
+        }
+    }
+</script>
+{% endblock %}

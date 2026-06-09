@@ -1,0 +1,48 @@
+<!-- FILE: templates/profile.html -->
+{% extends 'base.html' %}
+{% block title %}Universal Health Passport - Medisoft Infrastructure{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- বাম পাশের ইউজার ইনফো কার্ড -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
+            <div class="bg-medisoft text-white p-4 rounded-circle mx-auto d-flex align-items-center justify-content-center shadow" style="width: 100px; height: 100px;">
+                <i class="fa-solid fa-id-card-clip fa-3x"></i>
+            </div>
+            <h4 class="fw-bold text-dark mt-3 mb-1">{{ user.get_full_name|default:user.username }}</h4>
+            <span class="badge bg-teal-medisoft px-3 py-2 text-white bg-opacity-75 mb-3" style="background-color: var(--medisoft-teal);">Verified Patient Node</span>
+            <hr>
+            <div class="text-start mt-3">
+                <p class="mb-2"><strong><i class="fa-solid fa-droplet text-danger me-2"></i>Blood Group:</strong> O Positive (O+)</p>
+                <p class="mb-2"><strong><i class="fa-solid fa-envelope text-secondary me-2"></i>Network ID:</strong> {{ user.email }}</p>
+                <p class="mb-0"><strong><i class="fa-solid fa-calendar-day text-secondary me-2"></i>Registered:</strong> 2026-06-08</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ডান পাশের ক্লিনিকাল ডাটা ও প্রেসক্রিপশন হিস্ট্রি -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            <h4 class="fw-bold text-medisoft mb-4 border-bottom pb-2"><i class="fa-solid fa-clock-history me-2"></i>Immutable Clinical Diagnostic Records</h4>
+            
+            <div class="list-group list-group-flush">
+                <!-- রেকর্ড ১ -->
+                <div class="list-group-item px-0 py-3">
+                    <span class="badge bg-secondary float-end">System Generated</span>
+                    <h6 class="fw-bold mb-1">General Health Checkup Log</h6>
+                    <small class="text-muted d-block mb-2">Recorded on: May 12, 2026</small>
+                    <p class="mb-0 small text-secondary">Blood Pressure: 120/80 mmHg | Heart Rate: 74 BPM | Glucose Status: Normal.</p>
+                </div>
+                <!-- রেকর্ড ২ -->
+                <div class="list-group-item px-0 py-3">
+                    <span class="badge bg-success float-end">Confirmed</span>
+                    <h6 class="fw-bold mb-1">Prescription Invoice Order #MS-90412</h6>
+                    <small class="text-muted d-block mb-2">Processed on: April 28, 2026</small>
+                    <p class="mb-0 small text-secondary">Dispatched: Napa Extend 665mg (10 Units), Sergel 20mg (14 Units).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

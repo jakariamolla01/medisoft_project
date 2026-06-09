@@ -1,0 +1,109 @@
+<!-- FILE: templates/appointments.html -->
+{% extends 'base.html' %}
+{% block title %}Find Specialists & Book Slots - Medisoft{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- সার্চ ও ফিল্টার প্যানেল -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            <h5 class="fw-bold text-medisoft mb-3"><i class="fa-solid fa-filter me-2"></i>Advanced Search Matrix</h5>
+            <form id="filterForm">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Specialization</label>
+                    <select class="form-select shadow-sm">
+                        <option value="">All Specialities</option>
+                        <option value="cardiology">Cardiology (Heart)</option>
+                        <option value="neurology">Neurology (Brain)</option>
+                        <option value="medicine">Internal Medicine</option>
+                        <option value="pediatrics">Pediatrics (Child)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Consultation Fee Range</label>
+                    <select class="form-select shadow-sm">
+                        <option value="">Any Fee</option>
+                        <option value="1">Under 500 BDT</option>
+                        <option value="2">500 - 1000 BDT</option>
+                        <option value="3">1000+ BDT</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Availability</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="availToday" checked>
+                        <label class="form-check-label small text-muted" for="availToday">Show Available Today Only</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-medisoft w-100 fw-bold text-uppercase py-2 shadow-sm">
+                    Apply Filter Cluster <i class="fa-solid fa-sliders ms-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ডাক্তার এবং স্লটের লাইভ গ্রিড -->
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+                <h4 class="fw-bold text-medisoft mb-0"><i class="fa-solid fa-user-md me-2"></i>Verified Medical Consultants</h4>
+                <span class="badge bg-success p-2">Live Node Synced</span>
+            </div>
+
+            <!-- ডাক্তার ১ -->
+            <div class="card p-3 rounded-3 border-0 bg-light mb-4 shadow-sm">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-2 text-center">
+                        <div class="bg-white p-3 rounded-circle border shadow-sm mx-auto d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fa-solid fa-user-doctor fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-start">
+                        <h5 class="fw-bold mb-1 text-dark">Professor Dr. M. A. Rahman</h5>
+                        <p class="text-muted mb-2 small"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, FCPS, FRCP (London) - Senior Cardiologist</p>
+                        <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fw-semibold">BMDC Reg: A-45892</span>
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <div class="text-success fw-bold fs-4 mb-2">1,200 ৳ <span class="fs-6 text-muted font-monospace">(Fee)</span></div>
+                    </div>
+                </div>
+                <div class="mt-3 border-top pt-3">
+                    <h6 class="fw-bold text-secondary mb-2 small text-uppercase"><i class="fa-solid fa-clock me-1"></i>Available Real-Time Slots:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="/book-slot/101/" class="btn btn-sm btn-outline-medisoft px-3 py-2">04:30 PM (Today)</a>
+                        <a href="/book-slot/102/" class="btn btn-sm btn-outline-medisoft px-3 py-2">05:00 PM (Today)</a>
+                        <a href="/book-slot/103/" class="btn btn-sm btn-outline-medisoft px-3 py-2">05:30 PM (Today)</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ডাক্তার ২ -->
+            <div class="card p-3 rounded-3 border-0 bg-light mb-4 shadow-sm">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-2 text-center">
+                        <div class="bg-white p-3 rounded-circle border shadow-sm mx-auto d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fa-solid fa-user-doctor fa-2x text-info"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center text-md-start">
+                        <h5 class="fw-bold mb-1 text-dark">Dr. Nusrat Jahan</h5>
+                        <p class="text-muted mb-2 small"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD (Neurology) - Consultant Neurologist</p>
+                        <span class="badge bg-info bg-opacity-10 text-info px-3 py-2 fw-semibold">BMDC Reg: A-51204</span>
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <div class="text-success fw-bold fs-4 mb-2">1,000 ৳ <span class="fs-6 text-muted font-monospace">(Fee)</span></div>
+                    </div>
+                </div>
+                <div class="mt-3 border-top pt-3">
+                    <h6 class="fw-bold text-secondary mb-2 small text-uppercase"><i class="fa-solid fa-clock me-1"></i>Available Real-Time Slots:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="/book-slot/201/" class="btn btn-sm btn-outline-medisoft px-3 py-2">07:00 PM (Tonight)</a>
+                        <a href="/book-slot/202/" class="btn btn-sm btn-outline-medisoft px-3 py-2">07:45 PM (Tonight)</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

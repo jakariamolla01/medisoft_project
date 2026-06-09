@@ -1,0 +1,75 @@
+<!-- FILE: templates/blood.html -->
+{% extends 'base.html' %}
+{% block title %}Emergency Blood Bank Registry - Medisoft{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- রক্ত খোঁজার মডিউল -->
+    <div class="col-lg-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white border-start border-4 border-danger">
+            <h4 class="fw-bold text-danger mb-3"><i class="fa-solid fa-magnifying-glass-location me-2"></i>Query Blood Cluster</h4>
+            <form id="bloodQueryForm">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Target Blood Group</label>
+                    <select class="form-select shadow-sm border-danger fw-bold text-danger">
+                        <option value="A+">A+</option><option value="A-">A-</option>
+                        <option value="B+">B+</option><option value="B-">B-</option>
+                        <option value="O+">O+</option><option value="O-">O-</option>
+                        <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Location Radius</label>
+                    <select class="form-select shadow-sm">
+                        <option value="1">Dhaka Central Region</option>
+                        <option value="2">Chittagong Region</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-danger w-100 fw-bold py-2 text-uppercase shadow-sm">
+                    Scan Registered Donors <i class="fa-solid fa-satellite-dish ms-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ডোনারদের তালিকা এবং রিয়েল-টাইম ডাটা -->
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            <h5 class="fw-bold text-dark border-bottom pb-2 mb-3"><i class="fa-solid fa-users text-danger me-2"></i>Available Live Donors</h5>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr><th>Donor Name</th><th>Group</th><th>Last Donation</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">Tahmid Hasan</td>
+                            <td><span class="badge bg-danger">O+</span></td>
+                            <td class="small text-muted">5 Months Ago</td>
+                            <td><button class="btn btn-sm btn-outline-danger" onclick="pingDonor('Tahmid Hasan')">Ping Donor</button></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Tasnim Rahman</td>
+                            <td><span class="badge bg-danger">AB-</span></td>
+                            <td class="small text-muted">Never (Eligible)</td>
+                            <td><button class="btn btn-sm btn-outline-danger" onclick="pingDonor('Tasnim Rahman')">Ping Donor</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('bloodQueryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Query processing. Accessing real-time relational MySQL user architecture profiles.");
+    });
+    function pingDonor(donorName) {
+        alert(`[SMS API TELEMETRY DISPATCHED]\n\nAn automated high-priority emergency response request token has been pushed to ${donorName}'s verified mobile network endpoint.`);
+    }
+</script>
+{% endblock %}

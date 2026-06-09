@@ -1,0 +1,80 @@
+<!-- FILE: templates/pharmacy.html -->
+{% extends 'base.html' %}
+{% block title %}E-Pharmacy & Prescriptions Hub - Medisoft{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <!-- প্রেসক্রিপশন আপলোড প্যানেল -->
+    <div class="col-md-5">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center border-start border-4 border-info">
+            <i class="fa-solid fa-file-prescription fa-3x text-info mb-3"></i>
+            <h4 class="fw-bold text-dark">Instant Prescription Upload</h4>
+            <p class="text-muted small">Our pharmacologists will parse your prescription structure and dispatch the drugs directly.</p>
+            <form id="prescriptionForm" class="mt-4">
+                <div class="mb-3 border border-2 border-dashed p-4 rounded-3 bg-light cursor-pointer">
+                    <input type="file" id="prescriptionFile" class="form-control d-none" accept="image/*,.pdf" required onchange="updateFileNameText()">
+                    <label for="prescriptionFile" style="cursor: pointer;" id="uploadLabel">
+                        <i class="fa-solid fa-cloud-arrow-up fa-2x text-secondary mb-2"></i>
+                        <span class="d-block fw-semibold text-muted" id="fileNamePlaceholder">Drop image or click to select file</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-info w-100 text-white fw-bold py-2 text-uppercase shadow-sm">
+                    Upload to Pharmacist Cluster <i class="fa-solid fa-paper-plane ms-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ঔষধের ক্যাটালগ ও শপ গ্রিড -->
+    <div class="col-md-7">
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            <h4 class="fw-bold text-medisoft mb-4 border-bottom pb-2"><i class="fa-solid fa-capsules me-2"></i>Verified Retail Store Inventory</h4>
+            <div class="row g-3">
+                <!-- ঔষধ ১ -->
+                <div class="col-sm-6">
+                    <div class="card border p-3 bg-light rounded-3 shadow-sm">
+                        <span class="badge bg-secondary float-end align-self-end small">Tablet</span>
+                        <h6 class="fw-bold text-dark mb-1">Napa Extend 665mg</h6>
+                        <small class="text-muted d-block mb-3">Paracetamol | Beximco Pharma</small>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-success">15.00 ৳ <small class="text-muted">/ Strip</small></span>
+                            <button class="btn btn-sm btn-medisoft px-3" onclick="addToCart('Napa Extend 665mg')"><i class="fa-solid fa-cart-plus"></i> Buy</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ঔষধ ২ -->
+                <div class="col-sm-6">
+                    <div class="card border p-3 bg-light rounded-3 shadow-sm">
+                        <span class="badge bg-secondary float-end align-self-end small">Capsule</span>
+                        <h6 class="fw-bold text-dark mb-1">Sergel 20mg</h6>
+                        <small class="text-muted d-block mb-3">Esomeprazole | Healthcare Pharma</small>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold text-success">70.00 ৳ <small class="text-muted">/ Strip</small></span>
+                            <button class="btn btn-sm btn-medisoft px-3" onclick="addToCart('Sergel 20mg')"><i class="fa-solid fa-cart-plus"></i> Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function updateFileNameText() {
+        const fileInput = document.getElementById('prescriptionFile');
+        const placeholder = document.getElementById('fileNamePlaceholder');
+        if (fileInput.files.length > 0) {
+            placeholder.textContent = `Selected: ${fileInput.files[0].name}`;
+        }
+    }
+    document.getElementById('prescriptionForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Prescription payload successfully securely pushed to the pharmacy dashboard ledger. Processing invoice...");
+    });
+    function addToCart(medName) {
+        alert(`[CART LOCKED] Added 1 unit of ${medName} to order buffer cluster.`);
+    }
+</script>
+{% endblock %}

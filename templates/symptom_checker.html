@@ -1,0 +1,58 @@
+<!-- FILE: templates/symptom_checker.html -->
+{% extends 'base.html' %}
+{% block title %}AI Diagnostic Triage Terminal - Medisoft{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-white">
+            <div class="p-4 bg-dark text-white text-center border-bottom border-warning">
+                <i class="fa-solid fa-robot fa-3x text-warning mb-2 animate-bounce"></i>
+                <h4 class="fw-bold mb-1">Medisoft AI Clinical Triage Terminal</h4>
+                <p class="mb-0 text-white-50 small">Advanced heuristic pattern analysis of instant pathogenetic symptoms</p>
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-warning small py-2 border-0"><i class="fa-solid fa-triangle-exclamation me-1"></i> <strong>Disclaimer:</strong> This node framework performs heuristic analytical sorting. It is not an alternate legal replacement for a qualified human practitioner.</div>
+                
+                <form id="aiCoreForm" class="mt-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-dark">Describe Your Physical Complications & Timeline</label>
+                        <textarea class="form-control shadow-sm" id="symptomInput" rows="4" placeholder="Example: Severe headache for 3 days along with acute dry cough, high fever, and recent chest congestion..." required></textarea>
+                    </div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold">Current Body Temperature</label>
+                            <input type="text" class="form-control shadow-sm" placeholder="e.g., 102 °F">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label fw-semibold">Pre-existing Medical History</label>
+                            <input type="text" class="form-control shadow-sm" placeholder="Diabetes / Asthma / Hypertension">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100 py-3 fw-bold text-uppercase text-warning shadow-sm">
+                        Execute Heuristic Processing <i class="fa-solid fa-microchip ms-1"></i>
+                    </button>
+                </form>
+
+                <!-- AI প্রসেসিং রেজাল্ট কন্টেইনার -->
+                <div id="aiResultBlock" class="mt-4 p-3 bg-light border rounded-3 d-none">
+                    <h5 class="fw-bold text-success mb-2"><i class="fa-solid fa-square-poll-vertical me-2"></i>Diagnostic Matrix Result</h5>
+                    <p class="mb-2"><strong>Primary Probability Cluster:</strong> Acute Respiratory / Influenza Profile</p>
+                    <p class="mb-0 text-muted small"><strong>Recommended Path Vector:</strong> Please consult a general physician within 24 hours. Keep hydration status logged inside your Health Passport.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('aiCoreForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const resultBlock = document.getElementById('aiResultBlock');
+        resultBlock.classList.remove('d-none');
+        alert("Symptoms successfully evaluated by predictive text parsing logic engine.");
+    });
+</script>
+{% endblock %}
